@@ -1,0 +1,19 @@
+.button {
+  padding: 5px 10px;
+  border: thin solid green;
+  border-radius: 8px;
+}
+
+.button:hover {
+  background-color: red;
+  color: white;
+  border: thin solid white;
+}
+
+.but {
+  padding: 30px 50px;
+}
+
+p {
+  color: red;
+}
