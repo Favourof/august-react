@@ -1,12 +1,6 @@
-// function App() {
-//   return (
-//     <div>hello Word</div>
-//   )
-// }
-
 import { Card } from "./Card"
 import './App.css'
-import { useState } from "react"
+import { useRef, useState } from "react"
 
 
 
@@ -15,23 +9,32 @@ import { useState } from "react"
 export const App = () => {
 
   const [count, setCount] = useState(0)
+  const [email, setEmail] = useState("");
+  const [showEmail, setShowEmail] = useState();
+  const emailRef = useRef()
+
   // let count = 0
   const name = "ayo"
+  const gender = "male"
   const age = 8
   const user = {
     name: "Tayo",
-    age: 10,
+    age: 100,
     country: "Canada",
     gender: "female",
-    active: true
+    active: false
   }
 
 
-  // const handleIncrement = () => {
-  //   count++
-  //   console.log(count);
+  // const handleInputChange = (e) => {
+  //   setEmail(emailRef.current.value)
+  //   console.log(email);
 
   // }
+  console.log(email);
+
+
+
 
   const handleIncrement = () => {
     setCount(count + 1)
@@ -83,13 +86,38 @@ export const App = () => {
 
   return (
     <div>
+      <label htmlFor=""> email
+        <input type="email" ref={emailRef} name="" id="" />
+        {/* <input type="email" onChange={(e) => setEmail(e.target.value)} value={email} name="" id="" /> */}
+        {/* <input type="email" onChange={handleInputChange} value={email} name="" id="" /> */}
+
+      </label>
+      {/* <button onClick={() => { setShowEmail(email), setEmail("") }}>Show</button> */}
+      <button onClick={() => { setEmail(emailRef.current.value) }}>Show</button>
+      <p>User email: {email}</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <h1>Gender: {gender.toUpperCase()}</h1>
       <h1>count: {count}</h1>
       {/* <button onClick={() => setCount(count + 1)}>Increment</button> */}
       <button onClick={handleIncrement}>Increment</button>
+      <button>Decrement</button>
       <h1>Hello world</h1>
       <p className="p">Here is a p tag</p>
       <p>{name}</p>
-      <p>Age {age}</p>
+      <p>Age {age * 2}</p>
 
       <h1>{user.name} Profile</h1>
       <ul>
