@@ -16,7 +16,7 @@ export const Card = () => {
                 {/* <h1 style={{ fontSize: "50px", background: "blue", fontFamily: "Arial" }}>The Card</h1> */}
                 <h1 style={h1}>The Card</h1>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut dolorum hic ipsa itaque quos sunt? Natus at nesciunt a culpa, impedit magnam? Molestias odio quos hic vitae corporis quia iusto.</p>
-                <Button />
+                <Button text="see more" bg="red" color="white" />
                 <div></div>
             </div>
             <div></div>

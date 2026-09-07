@@ -1,16 +1,15 @@
 import { Card } from "./Card"
 import './App.css'
 import { useRef, useState } from "react"
-
-
-
+import { TodoList } from "./TodoList"
+import { Button } from "./Button"
 
 
 export const App = () => {
 
   const [count, setCount] = useState(0)
   const [email, setEmail] = useState("");
-  const [showEmail, setShowEmail] = useState();
+  // const [showEmail, setShowEmail] = useState();
   const emailRef = useRef()
 
   // let count = 0
@@ -32,9 +31,6 @@ export const App = () => {
 
   // }
   console.log(email);
-
-
-
 
   const handleIncrement = () => {
     setCount(count + 1)
@@ -86,6 +82,8 @@ export const App = () => {
 
   return (
     <div>
+      <Button bg="blue" text="Submit" color="white" />
+      <TodoList /><br /><br /><br />
       <label htmlFor=""> email
         <input type="email" ref={emailRef} name="" id="" />
         {/* <input type="email" onChange={(e) => setEmail(e.target.value)} value={email} name="" id="" /> */}
@@ -95,15 +93,6 @@ export const App = () => {
       {/* <button onClick={() => { setShowEmail(email), setEmail("") }}>Show</button> */}
       <button onClick={() => { setEmail(emailRef.current.value) }}>Show</button>
       <p>User email: {email}</p>
-
-
-
-
-
-
-
-
-
 
 
 
