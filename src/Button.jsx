@@ -2,12 +2,12 @@ import butStyle from './Button.module.css'
 
 
 
-export const Button = ({ color = "orange", bg, text }) => {
-    console.log();
+export const Button = ({ color = "orange", bg, text, click }) => {
+    // console.log();
 
     return (
         <div>
-            <button style={{ backgroundColor: `${bg}`, color: `${color}` }}>{text}</button>
+            <button onClick={click}  style={{ backgroundColor: `${bg}`, color: `${color}` }}>{text}</button>
         </div>
     )
 }

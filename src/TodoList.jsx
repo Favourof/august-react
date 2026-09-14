@@ -20,6 +20,7 @@ export const TodoList = () => {
 
         setTodos([...todos, todo])
 
+
         setInputValue("")
 
 
@@ -43,7 +44,8 @@ export const TodoList = () => {
             <h1>TodoList</h1>
             <label htmlFor="">Todo
                 <input value={inputValue} onChange={(e) => setInputValue(e.target.value)} type="text" name="" id="" />
-                <button onClick={handleAddTodo}>Add Todo</button>
+                {/* <button onClick={handleAddTodo}>Add Todo</button> */}
+                <Button bg="green" click={handleAddTodo} text="Add Todo" />
             </label>
 
             <div>
@@ -51,7 +53,9 @@ export const TodoList = () => {
                 {todos.length > 0 && todos.map((item) => (
                     <ul key={item.id}>
                         <li onClick={() => handleUpdateTodo(item.id)}>{item.todo} {item.active ? "✅" : "❌"}</li>
-                        <button onClick={() => deleteTodo(item.id)}>Delete</button>
+                        {/* <button onClick={() => deleteTodo(item.id)}>Delete</button> */}
+                        <Button text={"delete"} bg={"red"} click={() => deleteTodo(item.id)} />
+
                     </ul>
                 ))}
             </div>

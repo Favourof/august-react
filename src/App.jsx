@@ -3,6 +3,17 @@ import './App.css'
 import { useRef, useState } from "react"
 import { TodoList } from "./TodoList"
 import { Button } from "./Button"
+import { Navbar } from "./Component/Navbar"
+import { Route, Routes, useLocation } from "react-router-dom"
+import { Home } from "./Pages/Home"
+import { About } from "./Pages/About"
+import { Contact } from "./Pages/Contact"
+import { Page404 } from "./Component/404Page"
+import { Profile } from "./Pages/Profile"
+import { Settings } from "./Pages/Settings"
+import { Logs } from "./Pages/Logs"
+import { Dashboard } from "./Pages/Dashboard"
+import { HomePage } from "./Pages/HomePage"
 
 
 export const App = () => {
@@ -77,30 +88,62 @@ export const App = () => {
       rating: 5
     }
   ]
+  // const [showNav, setshowNav] = useState(true);
+
+  const location = useLocation()
+
+  console.log(location.pathname);
+
+  // if (location.pathname == "/dashboard") {
+  //   setshowNav(false)
+  // }
 
 
 
   return (
     <div>
-      <Button bg="blue" text="Submit" color="white" />
+      {/* {location.pathname !== "/dashboard" && <Navbar />} */}
+      <Routes>
+        <Route path="/" element={<HomePage />} >
+          <Route path="/home" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+        </Route>
+
+
+        <Route path="/dashboard" element={<Dashboard />}>
+          <Route path="profile" element={<Profile />} />
+          <Route path="settings" element={<Settings />} />
+          <Route path="logs" element={<Logs />} />
+        </Route>
+
+        <Route path="*" element={<Page404 />} />
+
+      </Routes>
+
+
+
+
+
+      {/* <Button bg="blue" text="Submit" color="white" />
       <TodoList /><br /><br /><br />
       <label htmlFor=""> email
         <input type="email" ref={emailRef} name="" id="" />
-        {/* <input type="email" onChange={(e) => setEmail(e.target.value)} value={email} name="" id="" /> */}
-        {/* <input type="email" onChange={handleInputChange} value={email} name="" id="" /> */}
+        <input type="email" onChange={(e) => setEmail(e.target.value)} value={email} name="" id="" />
+        <input type="email" onChange={handleInputChange} value={email} name="" id="" />
 
       </label>
-      {/* <button onClick={() => { setShowEmail(email), setEmail("") }}>Show</button> */}
+      <button onClick={() => { setShowEmail(email), setEmail("") }}>Show</button>
       <button onClick={() => { setEmail(emailRef.current.value) }}>Show</button>
-      <p>User email: {email}</p>
+      <p>User email: {email}</p> */}
 
 
 
 
 
-      <h1>Gender: {gender.toUpperCase()}</h1>
+      {/* <h1>Gender: {gender.toUpperCase()}</h1>
       <h1>count: {count}</h1>
-      {/* <button onClick={() => setCount(count + 1)}>Increment</button> */}
+      <button onClick={() => setCount(count + 1)}>Increment</button>
       <button onClick={handleIncrement}>Increment</button>
       <button>Decrement</button>
       <h1>Hello world</h1>
@@ -115,21 +158,21 @@ export const App = () => {
         <li>Country: {user.country}</li>
         <li>Gender: {user.gender}</li>
         <li>{user.name} is {user.active ? "active" : "not active"}</li>
-      </ul>
+      </ul> */}
 
 
-      {product.map((prod, i) => (
+      {/* {product.map((prod, i) => (
         <ul key={i}>
           <li>{prod.title.toUpperCase()}</li>
           <li>{prod.description}</li>
           <li>${prod.price}</li>
           <li>{prod.rating}</li>
         </ul>
-      ))}
+      ))} */}
 
 
 
-      <Card />
+      {/* <Card /> */}
 
 
 
