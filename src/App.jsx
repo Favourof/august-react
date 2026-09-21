@@ -14,26 +14,27 @@ import { Settings } from "./Pages/Settings"
 import { Logs } from "./Pages/Logs"
 import { Dashboard } from "./Pages/Dashboard"
 import { HomePage } from "./Pages/HomePage"
+import { Login } from "./Pages/Login"
 
 
 export const App = () => {
 
-  const [count, setCount] = useState(0)
-  const [email, setEmail] = useState("");
-  // const [showEmail, setShowEmail] = useState();
-  const emailRef = useRef()
+  // const [count, setCount] = useState(0)
+  // const [email, setEmail] = useState("");
+  // // const [showEmail, setShowEmail] = useState();
+  // const emailRef = useRef()
 
-  // let count = 0
-  const name = "ayo"
-  const gender = "male"
-  const age = 8
-  const user = {
-    name: "Tayo",
-    age: 100,
-    country: "Canada",
-    gender: "female",
-    active: false
-  }
+  // // let count = 0
+  // const name = "ayo"
+  // const gender = "male"
+  // const age = 8
+  // const user = {
+  //   name: "Tayo",
+  //   age: 100,
+  //   country: "Canada",
+  //   gender: "female",
+  //   active: false
+  // }
 
 
   // const handleInputChange = (e) => {
@@ -41,58 +42,58 @@ export const App = () => {
   //   console.log(email);
 
   // }
-  console.log(email);
+  // console.log(email);
 
-  const handleIncrement = () => {
-    setCount(count + 1)
-    console.log(count);
+  // const handleIncrement = () => {
+  //   setCount(count + 1)
+  //   console.log(count);
 
-  }
+  // }
   // console.log(count);
-  const product = [
-    {
-      id: 1,
-      title: "Bag",
-      price: 1000,
-      description: "This is a bag",
-      rating: 5
-    },
-    {
-      id: 2,
-      title: "Book",
-      price: 1000,
-      description: "This is a Book",
-      rating: 4
-    }
-    ,
-    {
-      id: 3,
-      title: "Jug",
-      price: 1000,
-      description: "This is a Jug",
-      rating: 2
-    }
-    ,
-    {
-      id: 4,
-      title: "Phone",
-      price: 3000,
-      description: "This is a Phone",
-      rating: 5
-    },
-    {
-      id: 5,
-      title: "laptop",
-      price: 5000,
-      description: "This is a laptop",
-      rating: 5
-    }
-  ]
+  // const product = [
+  //   {
+  //     id: 1,
+  //     title: "Bag",
+  //     price: 1000,
+  //     description: "This is a bag",
+  //     rating: 5
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "Book",
+  //     price: 1000,
+  //     description: "This is a Book",
+  //     rating: 4
+  //   }
+  //   ,
+  //   {
+  //     id: 3,
+  //     title: "Jug",
+  //     price: 1000,
+  //     description: "This is a Jug",
+  //     rating: 2
+  //   }
+  //   ,
+  //   {
+  //     id: 4,
+  //     title: "Phone",
+  //     price: 3000,
+  //     description: "This is a Phone",
+  //     rating: 5
+  //   },
+  //   {
+  //     id: 5,
+  //     title: "laptop",
+  //     price: 5000,
+  //     description: "This is a laptop",
+  //     rating: 5
+  //   }
+  // ]
   // const [showNav, setshowNav] = useState(true);
 
-  const location = useLocation()
+  // const location = useLocation()
 
-  console.log(location.pathname);
+  // console.log(location.pathname);
 
   // if (location.pathname == "/dashboard") {
   //   setshowNav(false)
@@ -108,11 +109,12 @@ export const App = () => {
           <Route path="/home" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/login" element={<Login />} />
         </Route>
 
 
         <Route path="/dashboard" element={<Dashboard />}>
-          <Route path="profile" element={<Profile />} />
+          <Route path="profile/:name/:age" element={<Profile />} />
           <Route path="settings" element={<Settings />} />
           <Route path="logs" element={<Logs />} />
         </Route>
