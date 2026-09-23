@@ -1,5 +1,4 @@
 import { Card } from "./Card"
-import './App.css'
 import { useRef, useState } from "react"
 import { TodoList } from "./TodoList"
 import { Button } from "./Button"
