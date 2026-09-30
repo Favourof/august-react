@@ -14,17 +14,25 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
+import { zodResolver } from "@hookform/resolvers/zod"
 import { Controller, useForm } from "react-hook-form"
+import { loginSchema } from "../schema/Login.schema"
+
 
 
 export const Login = () => {
-    const { control, register, handleSubmit, formState: { errors } } = useForm()
+
+    const { control, register, handleSubmit, formState: { errors } } = useForm({
+        resolver: zodResolver(loginSchema)
+    })
 
     const countries = [
         { label: "United States", value: "us" },
         { label: "United Kingdom", value: "uk" },
         { label: "Canada", value: "ca" },
     ]
+
+
     const onSubmit = (data) => {
         console.log(data);
 
@@ -40,13 +48,13 @@ export const Login = () => {
                         id="form-name"
                         type="text"
                         placeholder="Evil Rabbit"
-                        {...register("name", { required: { value: true, message: "Name is required" }, minLength: { value: 3, message: "Name must be at least 3 character" } })}
+                        {...register("name")}
                     />
                     {errors.name && <p className="text-red-400">{errors.name.message} </p>}
                 </Field>
                 <Field>
                     <FieldLabel htmlFor="form-email">Email</FieldLabel>
-                    <Input {...register('email', { required: { value: true, message: "Email is required" } })} id="form-email" type="email" placeholder="john@example.com" />
+                    <Input {...register('email')} id="form-email" type="email" placeholder="john@example.com" />
                     {errors.email && <p className="text-red-400">{errors.email.message} </p>}
                     <FieldDescription>
                         We&apos;ll never share your email with anyone.
@@ -62,17 +70,15 @@ export const Login = () => {
                         <FieldLabel htmlFor="form-country">Country</FieldLabel>
                         <Controller
                             name="country"
-                            control={control} // Obtained from const { control, register } = useForm();
-                            defaultValue="us"
-                            render={({ field: { onChange, value, ref } }) => (
+                            control={control}
+                            render={({ field }) => (
+                                // Radix/shadcn Select components need the exact value and onChange bound here
                                 <Select
-                                    onValueChange={onChange} // Custom components usually name this onValueChange
-                                    value={value}
-                                    defaultValue="us"
-                                    items={countries}
+                                    onValueChange={field.onChange}
+                                    value={field.value || ""}
                                 >
-                                    <SelectTrigger id="form-country" ref={ref}>
-                                        <SelectValue />
+                                    <SelectTrigger id="form-country" ref={field.ref}>
+                                        <SelectValue placeholder="Select a country" />
                                     </SelectTrigger>
                                     <SelectContent>
                                         <SelectGroup>
