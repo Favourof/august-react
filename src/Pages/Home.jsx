@@ -21,10 +21,12 @@ export const Home = () => {
 
     const handleGetProduct = async () => {
         try {
-            const res = await fetch("https://fakestoreapi.com/products")
+            const res = await fetch("http://localhost:4000/products")
+            // console.log("res: ", res)
             if (res.ok) {
                 const resJons = await res.json()
-                setProducts(resJons)
+
+                setProducts(resJons.product)
             }
 
         } catch (error) {

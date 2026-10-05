@@ -33,8 +33,10 @@ export const Login = () => {
     ]
 
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
         console.log(data);
+
+
 
     }
     console.log("Errors", errors);
