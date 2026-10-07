@@ -13,11 +13,13 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardAction, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { ThemeContext } from "../context/ThemeContext/ThemeContext";
 
 export const Home = () => {
     const [products, setProducts] = useState(null);
     const [retry, setRetry] = useState(false);
+    const { theme } = useContext(ThemeContext)
 
     const handleGetProduct = async () => {
         try {
@@ -43,6 +45,7 @@ export const Home = () => {
 
     return (
         <div>
+            <h1>THeme: {theme}</h1>
             <h1 className="text-2xl text-pink-900">This is home page</h1>
             <AlertDialog>
                 <AlertDialogTrigger render={<Button variant="outline" className={"bg-amber-700"}>Show Dialog</Button>} />
