@@ -14,6 +14,7 @@ import { Logs } from "./Pages/Logs"
 import { Dashboard } from "./Pages/Dashboard"
 import { HomePage } from "./Pages/HomePage"
 import { Login } from "./Pages/Login"
+import { AddProduct } from "./Pages/AddProduct"
 
 
 export const App = () => {
@@ -116,6 +117,7 @@ export const App = () => {
           <Route path="profile/:name/:age" element={<Profile />} />
           <Route path="settings" element={<Settings />} />
           <Route path="logs" element={<Logs />} />
+          <Route path="product" element={<AddProduct />} />
         </Route>
 
         <Route path="*" element={<Page404 />} />

@@ -8,7 +8,7 @@ import { Button } from '@base-ui/react'
 export const Navbar = () => {
     const { theme, toggleTheme } = useContext(ThemeContext)
     return (
-        <div style={{ width: "30%", margin: "auto", padding: "2px", border: "thin solid black", borderRadius: "20px", backgroundColor: "black" }}>
+        <div className='bg-foreground' style={{ width: "30%", margin: "auto", padding: "2px", border: "thin solid black", borderRadius: "20px", }}>
             <ul style={{ display: "flex", listStyleType: "none", justifyContent: "space-evenly", color: "white", cursor: "pointer" }}>
                 <li><Link to={"/home"}>Home</Link></li>
                 <li><Link to={"/about"}>About</Link></li>

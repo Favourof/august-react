@@ -15,6 +15,7 @@ import { Card, CardAction, CardDescription, CardFooter, CardHeader, CardTitle } 
 import { Badge } from "lucide-react";
 import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "../context/ThemeContext/ThemeContext";
+import { publicInstance } from "@/lib/axios";
 
 export const Home = () => {
     const [products, setProducts] = useState(null);
@@ -23,12 +24,12 @@ export const Home = () => {
 
     const handleGetProduct = async () => {
         try {
-            const res = await fetch("http://localhost:4000/products")
+            const res = await publicInstance.get("/products")
             // console.log("res: ", res)
-            if (res.ok) {
-                const resJons = await res.json()
+            console.log(res);
 
-                setProducts(resJons.product)
+            if (res.statusText == "OK") {
+                setProducts(res.data.product)
             }
 
         } catch (error) {

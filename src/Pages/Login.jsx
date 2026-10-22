@@ -6,35 +6,31 @@ import {
     FieldLabel,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
-import {
-    Select,
-    SelectContent,
-    SelectGroup,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select"
+
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Controller, useForm } from "react-hook-form"
+import { useForm } from "react-hook-form"
 import { loginSchema } from "../schema/Login.schema"
+import { publicInstance } from "@/lib/axios"
 
 
 
 export const Login = () => {
 
-    const { control, register, handleSubmit, formState: { errors } } = useForm({
+    const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: zodResolver(loginSchema)
     })
 
-    const countries = [
-        { label: "United States", value: "us" },
-        { label: "United Kingdom", value: "uk" },
-        { label: "Canada", value: "ca" },
-    ]
-
 
     const onSubmit = async (data) => {
-        console.log(data);
+        try {
+            const res = await publicInstance.post("/auth/register", data)
+            console.log(res);
+
+        } catch (error) {
+            console.log(error.response?.data?.message);
+        }
+
+
 
 
 
@@ -45,14 +41,24 @@ export const Login = () => {
         <form onSubmit={handleSubmit(onSubmit)} className="w-[50%] p-5 mt-20 m-auto border-2 border-black rounded-2xl max-w-sm">
             <FieldGroup>
                 <Field>
-                    <FieldLabel htmlFor="form-name">Name</FieldLabel>
+                    <FieldLabel htmlFor="form-name">FirstName</FieldLabel>
                     <Input
                         id="form-name"
                         type="text"
                         placeholder="Evil Rabbit"
-                        {...register("name")}
+                        {...register("firstName")}
                     />
-                    {errors.name && <p className="text-red-400">{errors.name.message} </p>}
+                    {errors.firstName && <p className="text-red-400">{errors.firstName.message} </p>}
+                </Field>
+                <Field>
+                    <FieldLabel htmlFor="form-name">LastName</FieldLabel>
+                    <Input
+                        id="form-name"
+                        type="text"
+                        placeholder="Evil Rabbit"
+                        {...register("lastName")}
+                    />
+                    {errors.lastName && <p className="text-red-400">{errors.lastName.message} </p>}
                 </Field>
                 <Field>
                     <FieldLabel htmlFor="form-email">Email</FieldLabel>
@@ -65,41 +71,11 @@ export const Login = () => {
                 </Field>
                 <div className="grid grid-cols-2 gap-4">
                     <Field>
-                        <FieldLabel htmlFor="form-phone">Phone</FieldLabel>
-                        <Input {...register('phoneNumber')} id="form-phone" type="tel" placeholder="+1 (555) 123-4567" />
-                    </Field>
-                    <Field>
-                        <FieldLabel htmlFor="form-country">Country</FieldLabel>
-                        <Controller
-                            name="country"
-                            control={control}
-                            render={({ field }) => (
-                                // Radix/shadcn Select components need the exact value and onChange bound here
-                                <Select
-                                    onValueChange={field.onChange}
-                                    value={field.value || ""}
-                                >
-                                    <SelectTrigger id="form-country" ref={field.ref}>
-                                        <SelectValue placeholder="Select a country" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        <SelectGroup>
-                                            {countries.map((country) => (
-                                                <SelectItem key={country.value} value={country.value}>
-                                                    {country.label}
-                                                </SelectItem>
-                                            ))}
-                                        </SelectGroup>
-                                    </SelectContent>
-                                </Select>
-                            )}
-                        />
+                        <FieldLabel htmlFor="form-password">Password</FieldLabel>
+                        <Input {...register('password')} id="form-password" type="text" placeholder="************" />
+                        {errors.password && <p className="text-red-400">{errors.password.message} </p>}
                     </Field>
                 </div>
-                <Field>
-                    <FieldLabel htmlFor="form-address">Address</FieldLabel>
-                    <Input {...register('address')} id="form-address" type="text" placeholder="123 Main St" />
-                </Field>
                 <Field orientation="horizontal">
                     <Button type="button" variant="outline">
                         Cancel

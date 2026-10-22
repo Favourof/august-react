@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ThemeContext } from "./ThemeContext.js"
 
 export const ThemeProvider = ({ children }) => {
@@ -8,13 +8,17 @@ export const ThemeProvider = ({ children }) => {
         setTheme((prev) => (prev === "light" ? "dark" : "light"))
     }
 
+    useEffect(() => {
+        document.documentElement.classList.toggle("dark", theme == "dark")
+    }, [theme])
+
 
     const value = {
         theme, toggleTheme
     }
     return (
-        <ThemeContext value={value}>
+        <ThemeContext.Provider value={value}>
             {children}
-        </ThemeContext>
+        </ThemeContext.Provider>
     )
 }

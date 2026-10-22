@@ -8,6 +8,7 @@ export const Sidebar = () => {
                 <li><Link to={"profile"}>Profile</Link></li>
                 <li><Link to={"settings"}>Settings</Link></li>
                 <li><Link to={"logs"}>Logs</Link></li>
+                <li><Link to={"product"}>Product</Link></li>
             </ul>
         </div>
     )
