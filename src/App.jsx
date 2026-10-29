@@ -13,7 +13,8 @@ import { Settings } from "./Pages/Settings"
 import { Logs } from "./Pages/Logs"
 import { Dashboard } from "./Pages/Dashboard"
 import { HomePage } from "./Pages/HomePage"
-import { Login } from "./Pages/Login"
+import { Login } from "./Pages/login"
+import { Register } from "./Pages/Register"
 import { AddProduct } from "./Pages/AddProduct"
 
 
@@ -110,6 +111,8 @@ export const App = () => {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+
         </Route>
 
 

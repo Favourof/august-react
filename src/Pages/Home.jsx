@@ -16,11 +16,13 @@ import { Badge } from "lucide-react";
 import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "../context/ThemeContext/ThemeContext";
 import { publicInstance } from "@/lib/axios";
+import { AuthContext } from "../context/AuthContext/AuthContext";
 
 export const Home = () => {
     const [products, setProducts] = useState(null);
     const [retry, setRetry] = useState(false);
     const { theme } = useContext(ThemeContext)
+    const { user } = useContext(AuthContext)
 
     const handleGetProduct = async () => {
         try {
@@ -48,6 +50,7 @@ export const Home = () => {
         <div>
             <h1>THeme: {theme}</h1>
             <h1 className="text-2xl text-pink-900">This is home page</h1>
+            <h1>Hello {user?.lastName} {user?.firstName}</h1>
             <AlertDialog>
                 <AlertDialogTrigger render={<Button variant="outline" className={"bg-amber-700"}>Show Dialog</Button>} />
                 <AlertDialogContent>

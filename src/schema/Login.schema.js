@@ -1,5 +1,10 @@
 import z from "zod";
 export const loginSchema = z.object({
+  email: z.email().nonempty("email is required"),
+  password: z.string().nonempty("password is required"),
+});
+
+export const registerSchema = z.object({
   firstName: z
     .string()
     .min(3, "firstName must not be lesser than 3 character")

@@ -26,7 +26,7 @@ export const AddProduct = () => {
         Object.entries(values).forEach(([key, value]) => payload.append(key, value))
 
         try {
-            // Replace this with your API request when the product endpoint is available.
+
             const product = await privateInstance.post("/products", payload)
             console.log(product);
 

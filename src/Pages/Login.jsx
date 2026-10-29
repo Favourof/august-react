@@ -11,6 +11,9 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { loginSchema } from "../schema/Login.schema"
 import { publicInstance } from "@/lib/axios"
+import { useContext } from "react"
+import { AuthContext } from "../context/AuthContext/AuthContext"
+import { useNavigate } from "react-router-dom"
 
 
 
@@ -19,12 +22,23 @@ export const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: zodResolver(loginSchema)
     })
+    const { logIn } = useContext(AuthContext)
+    const navigate = useNavigate()
 
 
     const onSubmit = async (data) => {
         try {
-            const res = await publicInstance.post("/auth/register", data)
-            console.log(res);
+            const res = await publicInstance.post("/auth/login", data)
+            console.log(res, 'herefewrhfgeiufgwe');
+            if (res) {
+                const token = res.data.token
+                const user = res.data.user
+                console.log(token, user);
+
+                logIn({ user, token })
+                navigate("/home")
+
+            }
 
         } catch (error) {
             console.log(error.response?.data?.message);
@@ -40,26 +54,6 @@ export const Login = () => {
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="w-[50%] p-5 mt-20 m-auto border-2 border-black rounded-2xl max-w-sm">
             <FieldGroup>
-                <Field>
-                    <FieldLabel htmlFor="form-name">FirstName</FieldLabel>
-                    <Input
-                        id="form-name"
-                        type="text"
-                        placeholder="Evil Rabbit"
-                        {...register("firstName")}
-                    />
-                    {errors.firstName && <p className="text-red-400">{errors.firstName.message} </p>}
-                </Field>
-                <Field>
-                    <FieldLabel htmlFor="form-name">LastName</FieldLabel>
-                    <Input
-                        id="form-name"
-                        type="text"
-                        placeholder="Evil Rabbit"
-                        {...register("lastName")}
-                    />
-                    {errors.lastName && <p className="text-red-400">{errors.lastName.message} </p>}
-                </Field>
                 <Field>
                     <FieldLabel htmlFor="form-email">Email</FieldLabel>
                     <Input {...register('email')} id="form-email" type="email" placeholder="john@example.com" />
